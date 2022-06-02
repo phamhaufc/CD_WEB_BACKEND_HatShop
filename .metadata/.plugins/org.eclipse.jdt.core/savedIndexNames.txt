@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+G:\IT\CDWeb\DoAn\Backend\.metadata\.plugins\org.eclipse.jdt.core
+3532815582.index
