@@ -10,7 +10,7 @@ public class MainController {
     //demo api
     @GetMapping(value = "/hello")
     @ResponseBody
-    public  String hello (){
+    public  String hello (@RequestBody String re){
         return "hello word";
     }
 
