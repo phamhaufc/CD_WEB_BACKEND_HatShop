@@ -1,35 +1,80 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name="User")
+@Table(name = "users")
 public class User {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
-        @Column(name = "username")
-        private String username;
+    @Column(name = "email")
+    private String email;
 
-        @Column(name ="password")
-        private String password;
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "fistName")
+    private String fistName;
+
+    @Column(name = "lastName")
+    private String lastName;
+
+    @Column(name = "dateOfBirth")
+    private Date dateOfBirth;
+
+    @Column(name = "province")
+    private String province;
+
+    @Column(name = "address")
+    private String address;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<UserRole> listUserRole = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Cart> listCart = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Contact> listContact = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Products> listProduct = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Prepayment> listPrepayment = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Bill> listBill = new ArrayList<>();
 
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
     public String getUsername() {
-        return username;
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -40,11 +85,70 @@ public class User {
         this.password = password;
     }
 
-    public User(Long id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
+    public String getEmail() {
+        return email;
     }
 
-    public User(){}
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFistName() {
+        return fistName;
+    }
+
+    public void setFistName(String fistName) {
+        this.fistName = fistName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public List<UserRole> getUserRole() {
+        return listUserRole;
+    }
+
+    public void setUserRole(List<UserRole> listUserRole) {
+        this.listUserRole = listUserRole;
+    }
+
+    public List<Products> getListProduct() {
+        return listProduct;
+    }
+
+    public void setListProduct(List<Products> listProduct) {
+        this.listProduct = listProduct;
+    }
+
+    public User() {
+    }
 }
